@@ -17,16 +17,16 @@ variable "image" {
 }	
 variable "ssh_user" {
     description = "User name"
-    default     = "marik"
+    default     = "jenkins"
 }
 variable "ssh_pub_key" {
     type = "map"
     description = "Path to the public key for user marik"
     default = {
-        "marik" = "~/testteraform/credential/marik.pub"
+        "jenkins" = "~/.ssh/id_rsa.pub"
     }    
 }
 variable "ssh_key" {
     description = "Path to the private key for user marik"
-    default     = "~/testteraform/credential/marik"
+    default     = "~/.ssh/id_rsa"
 }
