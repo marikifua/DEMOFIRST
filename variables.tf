@@ -23,10 +23,10 @@ variable "ssh_pub_key" {
     type = "map"
     description = "Path to the public key for user marik"
     default = {
-        "marik" = "~/teraform_Jenkins_unlock/credential/marik.pub"
+        "marik" = "~/testteraform/credential/marik.pub"
     }    
 }
 variable "ssh_key" {
     description = "Path to the private key for user marik"
-    default     = "~/teraform_Jenkins_unlock/credential/marik"
+    default     = "~/testteraform/credential/marik"
 }
