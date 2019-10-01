@@ -126,7 +126,7 @@ resource "google_compute_instance" "carts" {
     tags = [ "carts" ]
 }
 resource "google_compute_instance" "mongodb" {
-	name         = "mongodb"
+	name         = "mongodb-tf"
 	machine_type = "g1-small"
 
 
