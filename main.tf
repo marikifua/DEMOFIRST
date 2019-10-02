@@ -96,7 +96,7 @@ resource "google_compute_instance" "mongodb-tf" {
   connection {
     type = "ssh"
     user = "${var.ssh_user}"
-    host = "${google_compute_instance.mongodb.network_interface.0.access_config.0.nat_ip}"
+    host = "${google_compute_instance.mongodb-tf.network_interface.0.access_config.0.nat_ip}"
     private_key="${file("${var.ssh_key}")}"
     agent = false   
   } 
