@@ -13,19 +13,3 @@ export MAVEN_HOME=/usr/share/maven/
 EOF'
 source /etc/profile.d/java8.sh
 source /etc/profile.d/maven.sh
-# sudo useradd jenkins
-# sudo mkdir -p /opt/socks
-# sudo chown jenkins /opt/socks
-# sudo bash -c 'cat > /usr/lib/systemd/system/carts.service <<EOF
-# [Unit]
-#Description=Socks Carts server
-#[Service]
-#ExecStart=/usr/bin/java -Ddb:carts-db=mongodb -jar /opt/socks/carts.jar
-#User=jenkins
-#ExecReload=/bin/kill -HUP $MAINPID
-#KillMode=process
-#[Install]
-#WantedBy=multi-user.target
-#EOF
-#sudo systemctl start carts
-#sudo system enable carts
