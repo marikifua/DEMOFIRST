@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    parameters {
+            choice(name: 'TERRAFORM_TASK', choices:'plan\napply\ndestroy', description: "Choose the task" )
+    }
+  
+    stages {
+        stage('checkout') {
+            steps {
+                git url: 'https://github.com/marikifua/DEMOFIRST.git'
+            }
+        }
+        stage('Set Terraform path') {
+            steps {
+                script {
+                 def tfHome = tool name: 'terraform'
+                 env.PATH = "${tfHome}:${env.PATH}"
+                }
+            //sh 'terraform  version'
+            }
+        }
+        stage("Choose task") {
+            steps {
+                script {
+                    def terraforminit = '$WORKSPACE/.terraform'
+                    if (fileExists('terraforminit')) {
+                        println ".terraform exist"
+                    } else {
+                        sh 'terraform init' 
+                    }
+                    
+                    switch(TERRAFORM_TASK) {
+                        case "apply":
+                            sh 'terraform plan -out=plan'
+                            sh 'terraform apply plan'
+                            build job: 'testJobCartsPipeline'
+                            break
+                        case "destroy":
+                           sh 'terraform destroy -auto-approve'
+                           break
+                        case "plan":
+                           sh 'terraform plan'
+                           break
+                    }
+                }    
+            }
+        }
+ 
+    }
+}
