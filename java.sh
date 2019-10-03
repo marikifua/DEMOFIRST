@@ -1,6 +1,6 @@
 #!/bin/sh
 sudo yum install -y epel-release
-sudo yum update -y
+#sudo yum update -y
 sudo yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel maven git
 sudo bash -c 'cat > /etc/profile.d/java8.sh <<EOF
 export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
@@ -13,3 +13,18 @@ export MAVEN_HOME=/usr/share/maven/
 EOF'
 source /etc/profile.d/java8.sh
 source /etc/profile.d/maven.sh
+
+
+sudo sh -c 'cat << EOF >> /usr/lib/systemd/system/carts.service
+[Unit]
+Description=Start ans Stop jar
+[Service]
+ExecStart=/usr/bin/java -jar -Ddb:carts-db=mongo-tf /home/jenkins/carts.jar
+Restart=always
+KillMode=control-group
+User=jenkins
+[Install]
+WantedBy=multi-user.target
+EOF'
+sudo systemctl enable carts
+
