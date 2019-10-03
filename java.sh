@@ -19,7 +19,7 @@ sudo sh -c 'cat << EOF >> /usr/lib/systemd/system/carts.service
 [Unit]
 Description=Start ans Stop jar
 [Service]
-ExecStart=/usr/bin/java -jar -Ddb:carts-db=mongo-tf /home/jenkins/carts.jar
+ExecStart=/usr/bin/java -jar -Ddb:carts-db=mongodb-tf /home/jenkins/carts.jar
 Restart=always
 KillMode=control-group
 User=jenkins
