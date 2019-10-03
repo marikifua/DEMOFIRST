@@ -10,7 +10,7 @@ EOF'
 sudo rpm --import https://www.mongodb.org/static/pgp/server-4.2.asc
 sudo mkdir -p /var/lib/mongo
 sudo mkdir -p /var/log/mongodb
-sudo yum -y update
+#sudo yum -y update
 sudo yum install -y mongodb-org
 sudo chown -R mongod:mongod /var/lib/mongo
 sudo chown -R mongod:mongod /var/log/mongodb
