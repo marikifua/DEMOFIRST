@@ -1,6 +1,5 @@
 provider "google" {
   credentials = "${file("~/credential/marikkey.json")}"
-  #credentials = "${file("/home/student/teraform_Jenkins_unlock/credential/marikkey.json")}"
   #credentials = "./credential/marikkey.json"
   project = "quantum-tracker-251814"
   region  = "europe-west3"
